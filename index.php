@@ -22,9 +22,9 @@
   require_once('_projectCommon.php');
 
   # Begin: page-specific settings.  Change these.
-  $pageTitle = "Starterkit Template";
-  $pageKeywords = "Add maximal 20 keywords and seperate them from each other by a comma en a space.";
-  $pageAuthor = "Christopher Guindon";
+  $pageTitle = "Eclipse Jemo - Cloud Application Runtime";
+  $pageKeywords = "Jemo, Cloud, FaaS, Runtime, Java";
+  $pageAuthor = "Christopher Stura";
 
   # Initialize custom solstice $variables.
   $variables = array();
