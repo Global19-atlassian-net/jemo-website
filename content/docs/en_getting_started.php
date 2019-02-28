@@ -13,9 +13,9 @@
 
 <!-- Main content area -->
 <div id="midcolumn">
-  <h1>Eclipse Jemo Documentation</h1>
+  <h1>Eclipse Jemo - Getting Started</h1>
   <p>
-    introduction to Eclipse Jemo
+    Getting Started Guide
   </p>
 </div>
 <!-- ./end  #midcolumn -->
