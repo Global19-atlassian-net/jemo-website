@@ -86,17 +86,9 @@
 
     <p>To build Jemo locally, you need to clone the jemo repository</p>
 
-    <div class="listingblock">
-        <div class="content">
-            <pre class="highlightjs highlight"><code class="language-bash hljs"
-                                                     data-lang="bash">&gt; git clone ...</code></pre>
-        </div>
-    </div>
-
-    <p>And then execute the <a href="https://maven.apache.org/">Maven</a> <code>deploy</code> target on the root
-        directory.</p>
-
-    <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">&gt; cd jemo
+    <pre class="highlightjs highlight"><code class="language-bash hljs"
+                                             data-lang="bash">&gt; git clone https://git.eclipse.org/c/jemo/jemo.git</code>
+&gt; cd jemo/core
 &gt; mvn deploy</code></pre>
 
     <table>
@@ -217,12 +209,13 @@
     <p>In case of missing permissions, Jemo displays the missing permissions.
         You have to add them, e.g. by browsing to the AWS console and then come back and try again to login.
 
-    A genuine case for this error is when you have created the <code>jemo user</code> or the <code>jemo policy</code>
-    yourself.
-    Otherwise, the <code>jemo user</code> created by Jemo will always pass this validation.
-    If you created the user with Jemo and get this error,
-    it means you provided the credentials of an existing AWS user different than the <code>jemo user</code>.
-    Please review the credentials you entered and retry to login.
+        A genuine case for this error is when you have created the <code>jemo user</code> or the <code>jemo
+            policy</code>
+        yourself.
+        Otherwise, the <code>jemo user</code> created by Jemo will always pass this validation.
+        If you created the user with Jemo and get this error,
+        it means you provided the credentials of an existing AWS user different than the <code>jemo user</code>.
+        Please review the credentials you entered and retry to login.
     </p>
 
     <p>If the permissions are valid you will be forwarded to the next setup stage
@@ -250,7 +243,7 @@ a user with "Programmatic access" and attach the "AdministratorAccess" policy.
     <pre class="content">
 If the <code>terraform</code> command is not found on your path, Jemo notifies you
 with <a href="https://learn.hashicorp.com/terraform/getting-started/install.html"
-                target="_blank" rel="noopener">Terraform Installation Instructions</a>.
+        target="_blank" rel="noopener">Terraform Installation Instructions</a>.
     </pre>
 
     <p>Besides the <code>jemo user</code>, a user group <code>jemo-group</code> and a policy
@@ -374,7 +367,8 @@ Keep a copy of this file, if there are credentials you want to preserve.
     <p>If you don&#8217;t have credentials for the terraform user, you can create
         a user with permissions to both <code>Read and write all applications</code> and
         <code>Sign in and read user profile</code> within the Windows Azure Active Directory API.
-        Please install the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest" target="_blank">Azure
+        Please install the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest"
+                              target="_blank">Azure
             cli</a> and run:</p>
 
     <pre class="highlightjs highlight">&gt; az ad sp
@@ -446,7 +440,8 @@ with <a href="https://learn.hashicorp.com/terraform/getting-started/install.html
                     by Jemo</p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>log analytics workspace</code></p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>log analytics workspace</code></p>
+            </td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure log workspace where Jemo
                     redirects its logs</p></td>
         </tr>
@@ -598,7 +593,8 @@ jemo_user_client_secret = ********************************</code></pre>
                     by Jemo</p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>log analytics workspace</code></p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>log analytics workspace</code></p>
+            </td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure log workspace where Jemo
                     redirects its logs</p></td>
         </tr>
@@ -1286,7 +1282,8 @@ Make sure the <code>~/.aws/credentials</code> file has the terraform user creden
 
     <pre>
 If the <code>kubectl</code> command is not found on your path, Jemo notifies you
-with <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl" target="_blank">Kubectl Installation Instructions</a>.
+with <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl"
+        target="_blank">Kubectl Installation Instructions</a>.
     </pre>
     <p>The whole process can take up to 15 minutes. The Jemo UI monitors the progress.</p>
     <p>In the end, the UI notifies with the terraform crested resources and outputs,
