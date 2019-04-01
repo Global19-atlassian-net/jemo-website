@@ -347,7 +347,7 @@ void process(HttpServletRequest request, HttpServletResponse response);</code></
         The demo app consists of traders and stocks. Each trader has an account balance, a set of stocks
         he
         owns and can set target values
-        for buying or selling stocks. The source code can be found on this TODO[github repository].</p>
+        for buying or selling stocks. The source code can be found on the <a href="https://git.eclipse.org/c/jemo/jemo.git" target="_blank">jemo repository</p> under the ``demos/jemo-trader-app`` directory.
 
     <h4 id="jemo-module-lifecycle"><a class="anchor" href="#jemo-module-lifecycle"></a>2.1.1. Jemo
         Module
