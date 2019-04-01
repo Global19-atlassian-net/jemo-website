@@ -149,10 +149,9 @@
         the jemo user is created in. The dropdown menu displays all the available AWS regions as for now.
         If the region you are looking for is missing, please type its code in the provided text input.</p>
 
-    <pre class="content">
-        Every time you provide credentials, Jemo validates them and if valid,
-        it writes them on your filesystem on <code>~/.aws/credentials</code> file by overwritting existing content.
-        Keep a copy of this file, if there are credentials you want to preserve.
+    <pre class="content">Every time you provide credentials, Jemo validates them and if valid,
+it writes them on your filesystem on <code>~/.aws/credentials</code> file by overwritting existing content.
+Keep a copy of this file, if there are credentials you want to preserve.
     </pre>
 
     <p>If the credentials are valid, then Jemo checks if the following permissions are given to the <code>jemo
@@ -342,8 +341,7 @@ Keep a copy of this file, if there are credentials you want to preserve.
 "Microsoft.ManagedIdentity/userAssignedIdentities/read",
 "Microsoft.KeyVault/vaults/read",
 "Microsoft.KeyVault/vaults/secrets/read",
-"Microsoft.KeyVault/vaults/secrets/write"</code>
-    </pre>
+"Microsoft.KeyVault/vaults/secrets/write"</code></pre>
 
     <p>In case of missing permissions, Jemo displays the missing permissions.
         You have to add them, e.g. by browsing to the Azure console and then come back and try again to login.
@@ -371,9 +369,8 @@ Keep a copy of this file, if there are credentials you want to preserve.
                               target="_blank">Azure
             cli</a> and run:</p>
 
-    <pre class="highlightjs highlight">&gt; az ad sp
-            create-for-rbac -n "terraform-user" --role Owner
-            &gt; az ad app permission add --id http://terraform-user --api 00000002-0000-0000-c000-000000000000
+    <pre class="highlightjs highlight">&gt; az ad sp create-for-rbac -n "terraform-user" --role Owner
+&gt; az ad app permission add --id http://terraform-user --api 00000002-0000-0000-c000-000000000000
             --api-permissions 1cda74f2-2616-4834-b122-5cb1b07f8a59=Role
             311a71cc-e848-46a1-bdf8-97ff7156d8e6=Scope
     </pre>
@@ -381,8 +378,7 @@ Keep a copy of this file, if there are credentials you want to preserve.
     <pre>
 <code>Azure Active Directory</code> &#8594; <code>App registrations (Preview)</code> &#8594;
 <code>terraform-user</code> &#8594; <code>API permissions</code> &#8594;
-<code>Grant admin consent for Default Directory</code> &#8594; <code>Yes</code>
-    </pre>
+<code>Grant admin consent for Default Directory</code> &#8594; <code>Yes</code></pre>
 
     <p>If the <code>Grant admin consent for Default Directory</code> button is disabled
         please ask your Azure administrator to do this for you.</p>
@@ -396,8 +392,7 @@ Keep a copy of this file, if there are credentials you want to preserve.
 
     <pre>
 If the <code>terraform</code> command is not found on your path, Jemo notifies you
-with <a href="https://learn.hashicorp.com/terraform/getting-started/install.html" target="_blank">Terraform Installation Instructions</a>.
-    </pre>
+with <a href="https://learn.hashicorp.com/terraform/getting-started/install.html" target="_blank">Terraform Installation Instructions</a>.</pre>
 
     <p>Besides the <code>jemo user</code> (in the form of a service principal), many other resources are created.</p>
 
@@ -526,8 +521,7 @@ log-workspace-location="..."</pre>
     <pre class="content">
 To install <code>terraform</code> please read the <a
                 href="https://learn.hashicorp.com/terraform/getting-started/install.html" target="_blank"
-                rel="noopener">Terraform Installation Instructions</a>.
-    </pre>
+                rel="noopener">Terraform Installation Instructions</a>.</pre>
 
     <p>Enter <code>yes</code> when terraform asks you if you agree to create the proposed resources.
         After a while terraform will finish and print this:</p>
@@ -1283,8 +1277,7 @@ Make sure the <code>~/.aws/credentials</code> file has the terraform user creden
     <pre>
 If the <code>kubectl</code> command is not found on your path, Jemo notifies you
 with <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl"
-        target="_blank">Kubectl Installation Instructions</a>.
-    </pre>
+        target="_blank">Kubectl Installation Instructions</a>.</pre>
     <p>The whole process can take up to 15 minutes. The Jemo UI monitors the progress.</p>
     <p>In the end, the UI notifies with the terraform crested resources and outputs,
         as well as with the URL where you can access Jemo.
