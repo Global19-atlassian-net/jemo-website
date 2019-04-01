@@ -16,19 +16,22 @@
     <h1><?php print $pageTitle; ?></h1>
 
     <p>Eclipse Jemo aims to deliver a true multi-cloud FaaS implementation for JVM based languages.
-        Jemo which is built to take advantage of <a href="https://kubernetes.io/">Kubernetes</a> provides the same event
+        Jemo which is built to take advantage of <a href="https://kubernetes.io/" target="_blank">Kubernetes</a>
+        provides the same event
         driven development pattern
         that you will find in many function as a service offerings with the insulation from the specific provider.</p>
 
     <p>In addition to an event driven FaaS development paradigm Jemo aims to provide full compatibility
-        with the <a href="https://jakarta.ee/">Jakarta EE</a> and <a href="https://microprofile.io/">Microprofile
+        with the <a href="https://jakarta.ee/" target="_blank">Jakarta EE</a> and <a href="https://microprofile.io/"
+                                                                                     target="_blank">Microprofile
             platforms</a>
         using the runtime implementation to ensure that
         regardless of the platform used all applications are completely cloud native.
         In building Jemo we choose to focus on embracing the technology and pace of change provided by CSP&#8217;s
-        such as <a href="https://aws.amazon.com/">Amazon (AWS)</a>, <a href="https://azure.microsoft.com/en-gb/">Microsoft
+        such as <a href="https://aws.amazon.com/" target="_blank">Amazon (AWS)</a>, <a
+                href="https://azure.microsoft.com/en-gb/" target="_blank">Microsoft
             (Azure)</a>,
-        and <a href="https://cloud.google.com/">Google (GCP)</a>.</p>
+        and <a href="https://cloud.google.com/" target="_blank">Google (GCP)</a>.</p>
 
     <p>The major CSP&#8217;s provide many of the core application software technologies that are used to build
         modern applications
@@ -74,13 +77,14 @@
 
     <p>Jemo uses kubernetes to create clusters by exploiting the dedicated kubernetes services offered by CSP&#8217;s.
         The <code>kubectl</code> command is used to create kubernetes pods.
-        <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl">Install kubectl</a> and make sure it is on your
+        <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl" target="_blank">Install kubectl</a> and make
+        sure it is on your
         path.</p>
 
 
     <h2 id="build-jemo"><a class="anchor" href="#build-jemo"></a>2. Build Jemo</h2>
 
-    <p>To build Jemo locally, you wil need to clone the jemo repository</p>
+    <p>To build Jemo locally, you need to clone the jemo repository</p>
 
     <div class="listingblock">
         <div class="content">
@@ -120,7 +124,8 @@
 
     <pre>
         GSM is not setup yet. Please click on the following link to provide configuration: <a
-                href="https://localhost:443/jemo-manager/setup/" class="bare" target="_blank">https://localhost:443/jemo-manager/setup/</a>
+                href="https://localhost:443/jemo/setup/" class="bare"
+                target="_blank">https://localhost:443/jemo/setup/</a>
     </pre>
 
     <p>Browse to this link and select the CSP you want to use.
@@ -154,7 +159,7 @@
 
     <pre class="content">
         Every time you provide credentials, Jemo validates them and if valid,
-        it writes them on your filesystem on <code>~/.aws/credentials</code> file.
+        it writes them on your filesystem on <code>~/.aws/credentials</code> file by overwritting existing content.
         Keep a copy of this file, if there are credentials you want to preserve.
     </pre>
 
@@ -209,16 +214,16 @@
         "iam:ListPolicies"</code>
     </pre>
 
-    <p>In case of missing permissions, Jemo will display the missing permissions.
-        You have to add them, e.g. by browsing to the AWS console and then come back and try again to login.</p>
+    <p>In case of missing permissions, Jemo displays the missing permissions.
+        You have to add them, e.g. by browsing to the AWS console and then come back and try again to login.
 
-    <pre>
-        A genuine case for this error is when you have created the <code>jemo user</code> or the <code>jemo policy</code> yourself.
-        Otherwise, the <code>jemo user</code> created by Jemo will always pass this validation.
-        If you created the user with Jemo and get this error,
-        it means you provided the credentials of an existing AWS user different than the <code>jemo user</code>.
-        Please review the credentials you entered and retry to login.
-    </pre>
+    A genuine case for this error is when you have created the <code>jemo user</code> or the <code>jemo policy</code>
+    yourself.
+    Otherwise, the <code>jemo user</code> created by Jemo will always pass this validation.
+    If you created the user with Jemo and get this error,
+    it means you provided the credentials of an existing AWS user different than the <code>jemo user</code>.
+    Please review the credentials you entered and retry to login.
+    </p>
 
     <p>If the permissions are valid you will be forwarded to the next setup stage
         which is to select <code>Jemo parameter sets</code>.</p>
@@ -230,8 +235,8 @@
         The terraform user is then used to run these terraform templates.</p>
 
     <pre class="content">
-        If you don&#8217;t have credentials for the terraform user, you can create
-        a user with "Programmatic access" and attach the "AdministratorAccess" policy.
+If you don&#8217;t have credentials for the terraform user, you can create
+a user with "Programmatic access" and attach the "AdministratorAccess" policy.
     </pre>
 
     <p>Jemo generates terraform templates on your filesystem under the directory where
@@ -243,8 +248,8 @@
     </pre>
 
     <pre class="content">
-        If the <code>terraform</code> command is not found on your path, Jemo notifies you
-        with <a href="https://learn.hashicorp.com/terraform/getting-started/install.html"
+If the <code>terraform</code> command is not found on your path, Jemo notifies you
+with <a href="https://learn.hashicorp.com/terraform/getting-started/install.html"
                 target="_blank" rel="noopener">Terraform Installation Instructions</a>.
     </pre>
 
@@ -257,7 +262,7 @@
     <p>The UI notifies you with all the terraform created resources and printed outputs.
         The Jemo user credentials (<code>jemo_user_access_key_id</code> and
         <code>jemo_user_secret_access_key</code>)
-        are displayed on the <code>outputs</code> section. Copy these two values on your notes for futur
+        are displayed on the <code>outputs</code> section. Copy these two values on your notes for future
         reference.</p>
 
     <p>Behind the scenes, Jemo logs in with the <code>jemo user</code> and forwards you
@@ -278,9 +283,9 @@
         Create a file name with <code>terraform.tfvars</code> and set:
     </p>
     <pre>
-        terraform_user_access_key="..."
-        terraform_user_secret_key="..."
-        region="..."</code>
+terraform_user_access_key="..."
+terraform_user_secret_key="..."
+region="..."</code>
     </pre>
 
     <p>Then run terraform with:</p>
@@ -292,13 +297,12 @@
     <p>Enter <code>yes</code> when terraform asks you if you agree to create the proposed resources.
         After a while terraform will finish and print this:</p>
 
-    <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">
-        Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+    <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
 
-        Outputs:
+Outputs:
 
-        jemo_user_access_key_id = ********************
-        jemo_user_secret_access_key = ****************************************</code></pre>
+jemo_user_access_key_id = ********************
+jemo_user_secret_access_key = ****************************************</code></pre>
 
     <p>Besides the <code>jemo user</code>, a user group <code>jemo-group</code> and a policy
         <code>jemo-policy</code> are created.
@@ -322,42 +326,41 @@
         but make sure it supports AKS.</p>
 
     <pre>
-        Every time you provide credentials, Jemo validates them and if valid,
-        it writes them on your filesystem on <code>~/.azure/credentials</code> file.
-        Keep a copy of this file, if there are credentials you want to preserve.
+Every time you provide credentials, Jemo validates them and if valid,
+it writes them on your filesystem on <code>~/.azure/credentials</code> file.
+Keep a copy of this file, if there are credentials you want to preserve.
     </pre>
 
     <p>If the credentials are valid, then Jemo checks if the following permissions are given to the <code>jemo
             user</code>:</p>
 
     <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">
-        "Microsoft.Resources/subscriptions/read",
-        "Microsoft.Storage/storageAccounts/listKeys/action",
-        "Microsoft.EventHub/namespaces/eventhubs/write",
-        "Microsoft.EventHub/namespaces/AuthorizationRules/listKeys/action",
-        "Microsoft.DocumentDB/databaseAccounts/listKeys/action",
-        "Microsoft.DocumentDB/databaseAccounts/read",
-        "Microsoft.OperationalInsights/workspaces/read",
-        "Microsoft.Operationalinsights/workspaces/sharedkeys/read",
-        "Microsoft.Authorization/roleAssignments/read",
-        "Microsoft.Authorization/roleDefinitions/read",
-        "Microsoft.Network/virtualNetworks/read",
-        "Microsoft.ManagedIdentity/userAssignedIdentities/read",
-        "Microsoft.KeyVault/vaults/read",
-        "Microsoft.KeyVault/vaults/secrets/read",
-        "Microsoft.KeyVault/vaults/secrets/write"</code>
+"Microsoft.Resources/subscriptions/read",
+"Microsoft.Storage/storageAccounts/listKeys/action",
+"Microsoft.EventHub/namespaces/eventhubs/write",
+"Microsoft.EventHub/namespaces/AuthorizationRules/listKeys/action",
+"Microsoft.DocumentDB/databaseAccounts/listKeys/action",
+"Microsoft.DocumentDB/databaseAccounts/read",
+"Microsoft.OperationalInsights/workspaces/read",
+"Microsoft.Operationalinsights/workspaces/sharedkeys/read",
+"Microsoft.Authorization/roleAssignments/read",
+"Microsoft.Authorization/roleDefinitions/read",
+"Microsoft.Network/virtualNetworks/read",
+"Microsoft.ManagedIdentity/userAssignedIdentities/read",
+"Microsoft.KeyVault/vaults/read",
+"Microsoft.KeyVault/vaults/secrets/read",
+"Microsoft.KeyVault/vaults/secrets/write"</code>
     </pre>
 
     <p>In case of missing permissions, Jemo displays the missing permissions.
-        You have to add them, e.g. by browsing to the Azure console and then come back and try again to login.</p>
+        You have to add them, e.g. by browsing to the Azure console and then come back and try again to login.
 
-    <pre>
         A genuine case for this error is when you have created the <code>jemo user</code> yourself.
         Otherwise, the <code>jemo user</code> created by Jemo will always pass this validation.
         If you created the user with Jemo and get this error,
         it means you provided the credentials of an existing Azure user different than the <code>jemo user</code>.
         Please review the credentials you entered and retry to login.
-    </pre>
+    </p>
 
     <p>If the permissions are valid you will be forwarded to the next setup stage
         which is to select <code>Jemo parameter sets</code>.</p>
@@ -371,20 +374,20 @@
     <p>If you don&#8217;t have credentials for the terraform user, you can create
         a user with permissions to both <code>Read and write all applications</code> and
         <code>Sign in and read user profile</code> within the Windows Azure Active Directory API.
-        Please install the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest">Azure
+        Please install the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest" target="_blank">Azure
             cli</a> and run:</p>
 
-    <p class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">&gt; az ad sp
+    <pre class="highlightjs highlight">&gt; az ad sp
             create-for-rbac -n "terraform-user" --role Owner
             &gt; az ad app permission add --id http://terraform-user --api 00000002-0000-0000-c000-000000000000
             --api-permissions 1cda74f2-2616-4834-b122-5cb1b07f8a59=Role
-            311a71cc-e848-46a1-bdf8-97ff7156d8e6=Scope</code>
-    </p>
+            311a71cc-e848-46a1-bdf8-97ff7156d8e6=Scope
+    </pre>
     Then, open the console and navigate to:
     <pre>
-        <code>Azure Active Directory</code> &#8594; <code>App registrations (Preview)</code> &#8594;
-        <code>terraform-user</code> &#8594; <code>API permissions</code> &#8594;
-        <code>Grant admin consent for Default Directory</code> &#8594; <code>Yes</code>
+<code>Azure Active Directory</code> &#8594; <code>App registrations (Preview)</code> &#8594;
+<code>terraform-user</code> &#8594; <code>API permissions</code> &#8594;
+<code>Grant admin consent for Default Directory</code> &#8594; <code>Yes</code>
     </pre>
 
     <p>If the <code>Grant admin consent for Default Directory</code> button is disabled
@@ -398,8 +401,8 @@
 &gt; terraform apply -no-color -auto-approve -var-file=azure/install/terraform.tfvars azure/install</code></pre>
 
     <pre>
-        If the <code>terraform</code> command is not found on your path, Jemo notifies you
-        with <a href="https://learn.hashicorp.com/terraform/getting-started/install.html" target="_blank">Terraform Installation Instructions</a>.
+If the <code>terraform</code> command is not found on your path, Jemo notifies you
+with <a href="https://learn.hashicorp.com/terraform/getting-started/install.html" target="_blank">Terraform Installation Instructions</a>.
     </pre>
 
     <p>Besides the <code>jemo user</code> (in the form of a service principal), many other resources are created.</p>
@@ -418,37 +421,37 @@
         </thead>
         <tbody>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">role</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>role</code></p></td>
             <td class="tableblock halign-left valign-top">Declares permissions for all the needed actions and is
                 assigned to the <code>jemo user</code></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">resource group</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>resource group</code></p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure resource group that includes
                     all the resources</p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">storage account</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage account</code></p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure storage account to be used by
                     Jemo</p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">cosoms DB account</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cosoms DB account</code></p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure Cosoms DB account to be used
                     by Jemo</p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">eventhub namespace</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>eventhub namespace</code></p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure Eventhub namespace to be used
                     by Jemo</p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">log analytics workspace</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>log analytics workspace</code></p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure log workspace where Jemo
                     redirects its logs</p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">key vault</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>key vault</code></p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure key vault to securely store
                     the secrets needed by Jemo at runtime</p></td>
         </tr>
@@ -492,7 +495,7 @@
 
     <p>The UI notifies you with all the terraform created resources and printed outputs.
         The Jemo user credentials (<code>jemo_user_client_id</code> and <code>terraform_user_client_secret</code>)
-        are displayed on the <code>outputs</code> section. Copy these two values on your notes for futur reference.
+        are displayed on the <code>outputs</code> section. Copy these two values on your notes for future reference.
     </p>
 
     <p>Behind the scenes, Jemo logs in with the <code>jemo user</code> and forwards you
@@ -502,7 +505,7 @@
     <h4 id="download-the-terraform-templates-2"><a class="anchor" href="#download-the-terraform-templates-2"></a>3.2.3.
         Download the Terraform Templates</h4>
 
-    <p>Uppon clicking on the <code>DOWNLOAD TERRAFORM TEMPLATES</code> button, the <code>install.zip</code> fill
+    <p>Uppon clicking on the <code>DOWNLOAD TERRAFORM TEMPLATES</code> button, the <code>install.zip</code> file
         will be
         downloaded. Run:</p>
 
@@ -512,12 +515,12 @@
     <p>You are required to provide values for the terraform user credentials. Create a file named with <code>terraform.tfvars</code>
         and set:</p>
     <pre class="highlightjs highlight">
-        terraform_user_client_id="..."
-        terraform_user_client_secret="..."
-        tenant_id="..."
-        subscription_id="..."
-        region="..."
-        log-workspace-location="..."</pre>
+terraform_user_client_id="..."
+terraform_user_client_secret="..."
+tenant_id="..."
+subscription_id="..."
+region="..."
+log-workspace-location="..."</pre>
 
     <p>Then run terraform with:</p>
 
@@ -526,7 +529,7 @@
 &gt; terraform apply</code></pre>
 
     <pre class="content">
-        To install <code>terraform</code> please read the <a
+To install <code>terraform</code> please read the <a
                 href="https://learn.hashicorp.com/terraform/getting-started/install.html" target="_blank"
                 rel="noopener">Terraform Installation Instructions</a>.
     </pre>
@@ -534,19 +537,18 @@
     <p>Enter <code>yes</code> when terraform asks you if you agree to create the proposed resources.
         After a while terraform will finish and print this:</p>
 
-    <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">
-        Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
+    <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Apply complete! Resources: 19 added, 0 changed, 0 destroyed.
 
-        Outputs:
+Outputs:
 
-        eclipse.jemo.azure.db = jemocdba-9wxaszuresvxl9ar0
-        eclipse.jemo.azure.eventhub = jemoehn-9wxaszuresvxl9ar0
-        eclipse.jemo.azure.keyvault = jemokv-9wxaszuresvxl9ar0
-        eclipse.jemo.azure.log-workspace = jemo-log-workspace-9wxaszuresvxl9ar0
-        eclipse.jemo.azure.resourcegroup = jemorg
-        eclipse.jemo.azure.storage = jemosa9wxaszuresvxl9ar0
-        jemo_user_client_id = ************************************
-        jemo_user_client_secret = ********************************</code></pre>
+eclipse.jemo.azure.db = jemocdba-9wxaszuresvxl9ar0
+eclipse.jemo.azure.eventhub = jemoehn-9wxaszuresvxl9ar0
+eclipse.jemo.azure.keyvault = jemokv-9wxaszuresvxl9ar0
+eclipse.jemo.azure.log-workspace = jemo-log-workspace-9wxaszuresvxl9ar0
+eclipse.jemo.azure.resourcegroup = jemorg
+eclipse.jemo.azure.storage = jemosa9wxaszuresvxl9ar0
+jemo_user_client_id = ************************************
+jemo_user_client_secret = ********************************</code></pre>
 
     <p>Besides the <code>jemo user</code> (in the form of a service principal), many other resources are
         created.
@@ -566,42 +568,42 @@
         </thead>
         <tbody>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">role</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>role</p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">Declares permissions for all the
                     needed
                     actions and is assigned to the <code>jemo user</code></p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">resource group</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>resource group</code></p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure resource group that
                     includes
                     all the resources</p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">storage account</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>storage account</code></p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure storage account to be used
                     by
                     Jemo</p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">cosoms DB account</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>cosoms DB account</code></p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure Cosoms DB account to be
                     used
                     by Jemo</p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">eventhub namespace</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>eventhub namespace</code></p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure Eventhub namespace to be
                     used
                     by Jemo</p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">log analytics workspace</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>log analytics workspace</code></p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure log workspace where Jemo
                     redirects its logs</p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">key vault</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>key vault</code></p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The Azure key vault to securely
                     store
                     the secrets needed by Jemo at runtime</p></td>
@@ -647,15 +649,15 @@
 
     <p>You may notice that many of the created resources have names with the same randomly created suffix,
         e.g. the Azure Cosmos db account name is <code>jemocdba-9wxaszuresvxl9ar0</code>.
-        Many azure resources need to have a globally unique name, because the are accessible via a url, e.g.
+        Many azure resources need to have a globally unique name, because they are accessible via a url, e.g.
         <a href="https://jemocdba-9wxaszuresvxl9ar0.documents.azure.com" target="_blank">https://jemocdba-9wxaszuresvxl9ar0.documents.azure.com</a>.
         Jemo uses a randomly generated suffix to avoid
         collisions between people who use Jemo concurrently.</p>
 
     <p>Jemo asks you to provide the names of the created resources, as it is unaware of them.
-        Just copy paste the values from the terraform outputs ans click on the <code>SUBMIT</code> button.</p>
+        Just copy paste the values from the terraform outputs and click on the <code>SUBMIT</code> button.</p>
     <p>Then you can use the newly created <code>jemo user</code> credentials to login.
-        Click the <code>I HAVE A USER</code> button.</p>
+        Click the <code>LOGIN</code> button.</p>
 
 
     <h2 id="jemo-parameters"><a class="anchor" href="#jemo-parameters"></a>4. Jemo Parameters</h2>
@@ -986,9 +988,8 @@
 
     <p>Open the <code>terraform.tfvars</code> to review existing parameter values and
         append it with values for the terraform user credentials.</p>
-    <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">
-        terraform_user_access_key="..."
-        terraform_user_secret_key="..."</code></pre>
+    <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">terraform_user_access_key="..."
+terraform_user_secret_key="..."</code></pre>
 
     <p>Then run terraform with:</p>
     <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">&gt; terraform init
@@ -998,15 +999,14 @@
     <p>Enter <code>yes</code> when terraform asks you if you agree to create the proposed resources.
         After a while terraform will finish and print this:</p>
 
-    <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">
-        Apply complete! Resources: 26 added, 0 changed, 0 destroyed.
+    <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Apply complete! Resources: 26 added, 0 changed, 0 destroyed.
 
-        Outputs:
+Outputs:
 
-        aws_eks_cluster_endpoint = ...
-        aws_eks_worker_node_role_arn = ...
-        config_map_aws_auth = ...
-        kubeconfig = ...</code></pre>
+aws_eks_cluster_endpoint = ...
+aws_eks_worker_node_role_arn = ...
+config_map_aws_auth = ...
+kubeconfig = ...</code></pre>
 
     <p>At this point, the cluster and worker nodes are created.
         Jemo has to deploy the Jemo pods to worker nodes.
@@ -1017,9 +1017,9 @@
         tool should be installed and accessible on your path.</p>
 
     <pre>
-        Since the cluster was created with the terraform user,
-        kubectl needs to use the terraform user credentials.
-        Make sure the <code>~/.aws/credentials</code> file has the terraform user credentials.
+Since the cluster was created with the terraform user,
+kubectl needs to use the terraform user credentials.
+Make sure the <code>~/.aws/credentials</code> file has the terraform user credentials.
     </pre>
 
     <p>Run the following commands:</p>
@@ -1285,8 +1285,8 @@
 &gt; kubectl rollout status statefulset jemo</code></pre>
 
     <pre>
-        If the <code>kubectl</code> command is not found on your path, Jemo notifies you
-        with <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl" target="_blank">Kubectl Installation Instructions</a>.
+If the <code>kubectl</code> command is not found on your path, Jemo notifies you
+with <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl" target="_blank">Kubectl Installation Instructions</a>.
     </pre>
     <p>The whole process can take up to 15 minutes. The Jemo UI monitors the progress.</p>
     <p>In the end, the UI notifies with the terraform crested resources and outputs,
@@ -1305,30 +1305,28 @@
 &gt; cd cluster</code></pre>
     <p>Open the <code>terraform.tfvars</code> to review existing parameter values and
         append it with values for the terraform user credentials.</p>
-    <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">
-        terraform_user_client_id="..."
-        terraform_user_client_secret="..."</code></pre>
+    <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">terraform_user_client_id="..."
+terraform_user_client_secret="..."</code></pre>
     <p>Then run terraform with:</p>
     <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">&gt; terraform init
 &gt; terraform plan
 &gt; terraform apply</code></pre>
     <p>Enter <code>yes</code> when terraform asks you if you agree to create the proposed resources.
         After a while terraform will finish and print this:</p>
-    <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">
-        Apply complete! Resources: 11 added, 0 changed, 0 destroyed.
+    <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Apply complete! Resources: 11 added, 0 changed, 0 destroyed.
 
-        Outputs:
+Outputs:
 
-        client_certificate = ...
-        client_key = ...
-        cluster_ca_certificate = ...
-        cluster_password = ...
-        cluster_username = ...
-        host = ...
-        jemo-identity-client_id = ...
-        jemo-identity-id = ...
-        jemo-identity-principal_id = ...
-        kube_config = ...</code></pre>
+client_certificate = ...
+client_key = ...
+cluster_ca_certificate = ...
+cluster_password = ...
+cluster_username = ...
+host = ...
+jemo-identity-client_id = ...
+jemo-identity-id = ...
+jemo-identity-principal_id = ...
+kube_config = ...</code></pre>
 
     <p>At this point, the cluster and worker nodes are created.
         Jemo has to deploy the Jemo pods to worker nodes.
