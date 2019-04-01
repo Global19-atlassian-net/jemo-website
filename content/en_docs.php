@@ -358,7 +358,7 @@ void process(HttpServletRequest request, HttpServletResponse response);</code></
         of the module&#8217;s lifecycle.</p>
 
     <table class="tableblock frame-all grid-all stretch">
-        <caption class="title">Table 3. Lifecycle methods</caption>
+        <caption class="title">Table 4. Lifecycle methods</caption>
         <colgroup>
             <col style="width: 25%;">
             <col style="width: 75%;">
