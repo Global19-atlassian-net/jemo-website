@@ -41,20 +41,20 @@
         </thead>
         <tbody>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>web service</code></p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock">Web service</p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock"><code>WebServiceModule</code></p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>event processing</code></p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock">event processing</p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock"><code>EventModule</code></p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>batch processing</code></p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock">Batch processing</p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock"><code>BatchModule</code></p></td>
         </tr>
         <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>fixed processing</code></p></td>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">FixedModule.</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock">Fixed processing</p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock"><code>FixedModule</code></p></td>
         </tr>
         </tbody>
     </table>
@@ -120,8 +120,8 @@ void process(HttpServletRequest request, HttpServletResponse response);</code></
     <table class="tableblock frame-all grid-all stretch">
         <caption class="title">Table 2. Module Limit Batch Options</caption>
         <colgroup>
-            <col style="width: 50%;">
-            <col style="width: 50%;">
+            <col style="width: 25%;">
+            <col style="width: 75%;">
         </colgroup>
         <thead>
         <tr>
@@ -161,23 +161,45 @@ void process(HttpServletRequest request, HttpServletResponse response);</code></
     <h3 id="the-fixedmodule"><a class="anchor" href="#the-fixedmodule"></a>1.4. The FixedModule</h3>
 
     <p>Finally, with fixed processing you can write code in a module and select how many module instances and on
-        what cluster or network topology
-        the module runs on. Options are to run:</p>
+        what cluster or network topology.
+        Options are summarized in the following table.</p>
 
-    <div class="olist arabic">
-        <ol class="arabic">
-            <li>
-                <p>N module instances across all Jemo instances</p>
-            </li>
-            <li>
-                <p>N module instances across a specific Jemo <code>location</code>, which is a label identifying a
-                    cluster or network topology</p>
-            </li>
-            <li>
-                <p>N module instances per running Jemo instance</p>
-            </li>
-        </ol>
-    </div>
+    <table class="tableblock frame-all grid-all stretch">
+        <caption class="title">Table 3. Module Limit Fixed Processing Options</caption>
+        <colgroup>
+            <col style="width: 30%;">
+            <col style="width: 70%;">
+        </colgroup>
+        <thead>
+        <tr>
+            <th class="tableblock halign-left valign-top">Method</th>
+            <th class="tableblock halign-left valign-top">Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="tableblock halign-left valign-top"><p class="tableblock">
+                    <code>setMaxActiveFixedPerGSM(N)</code>
+                </p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock">Run N fixed processes of
+                    this module across Jemo instances</p></td>
+        </tr>
+        <tr>
+            <td class="tableblock halign-left valign-top"><p class="tableblock">
+                    <code>setMaxActiveFixedPerLocation(N)</code>
+                </p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock">Run N fixed processes of
+                    this module across Jemo instances within a location.</p></td>
+        </tr>
+        <tr>
+            <td class="tableblock halign-left valign-top"><p class="tableblock">
+                    <code>setMaxActiveFixedPerInstance(N)</code>
+                </p></td>
+            <td class="tableblock halign-left valign-top"><p class="tableblock">Run N fixed processes of
+                    this module on each running Jemo instance.</p></td>
+        </tr>
+        </tbody>
+    </table>
 
     <div class="listingblock">
         <div class="title">event processing pattern</div>
@@ -188,8 +210,7 @@ void process(HttpServletRequest request, HttpServletResponse response);</code></
 
     <p>Developers used to deploy their apps with kubernetes will find the fixed processing pattern familiar.
         Notice that Kubernetes is used by the Jemo setup process to spin up a cluster of Jemo instances running
-        on
-        the selected CSP.
+        on the selected CSP.
         This is different to traditional Kubernetes use, since in our case it is used to create a cluster of
         instances of
         the application server, rather than instances of the applications. For the latter, Jemo leverages cloud
@@ -197,7 +218,9 @@ void process(HttpServletRequest request, HttpServletResponse response);</code></
         the selected CloudRuntime.</p>
 
     <h2 id="getting-started"><a class="anchor" href="#getting-started"></a>2. Getting started</h2>
-    <p>We start by creating a new maven project and provide the following content to the
+
+    <p>In this section we show how to develop a Jemo application by implementing all the offered development patterns.
+        We start by creating a new maven project and provide the following content to the
         <code>pom.xml</code>
         file.</p>
     <div class="listingblock">
@@ -624,7 +647,7 @@ void process(HttpServletRequest request, HttpServletResponse response);</code></
     </div>
 </div>
 <div class="paragraph">
-    <p>The <code>MarketMatcher</code> class itself implements the Module interface, overrides the
+    <p>The <code>MarketMatcher</code> class implements the <code>EventModule</code> interface, overrides the
         <code>process</code>
         method to consume the message.
         It attempts to match the trader whose buy/sell target values have changed with other traders
@@ -780,73 +803,21 @@ void process(HttpServletRequest request, HttpServletResponse response);</code></
         </div>
     </div>
 
-    <p>With the <code>getLimits</code> method we instruct Jemo to run one process on each Jemo
-        instance.
-        Options are summarized in the following table.</p>
-
-    <table class="tableblock frame-all grid-all stretch">
-        <caption class="title">Table 5. Module Limit Fixed Processing Options</caption>
-        <colgroup>
-            <col style="width: 30%;">
-            <col style="width: 70%;">
-        </colgroup>
-        <thead>
-        <tr>
-            <th class="tableblock halign-left valign-top">Method</th>
-            <th class="tableblock halign-left valign-top">Description</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">
-                    <code>setMaxActiveFixedPerGSM(N)</code>
-                </p></td>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">Run N fixed processes of
-                    this module across Jemo instances</p></td>
-        </tr>
-        <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">
-                    <code>setMaxActiveFixedPerLocation(N)</code>
-                </p></td>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">Run N fixed processes of
-                    this module across Jemo instances within a location.</p></td>
-        </tr>
-        <tr>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">
-                    <code>setMaxActiveFixedPerInstance(N)</code>
-                </p></td>
-            <td class="tableblock halign-left valign-top"><p class="tableblock">Run N fixed processes of
-                    this module on each running Jemo instance.</p></td>
-        </tr>
-        </tbody>
-    </table>
+    <p>With the <code>getLimits</code> method we instruct Jemo to run one process on each Jemo instance. </p>
 
     <p>With the <code>processFixed</code> method we define an infinite loop that logs the
         transactions
         processed the last 30 seconds by this instance and then
         sleep for 30 secs.</p>
 
-    <p>In this implementation the process never terminates (until Jemo terminates), due to the
-        infinite
-        loop,
-        but otherwise Jemo would terminate it after the <code>processFixed</code> had returned.
-        In this case, Jemo would call the <code>stop</code> method, then terminate the process and
-        then
-        would recreate it, as the <code>getLimits</code>
-        instructs Jemo to have always one process of this module active per instance.
-        This is very similar with the kubernetes behaviour, where you declare how many pods you want
-        to
-        run and when one pod goes down,
-        kubernetes creates another one to replace it.</p>
-
     <p>While a fixed process is meant to run forever, there are cases where Jemo needs to restart
-        the
-        module, e.g. in case
-        of upgrades. Make sure you provide the proper code to <code>start</code> and
-        <code>stop</code>
-        methods to initialise state or free resources.
-        E.g. in our example, we make sure that the loop in the <code>processFixed</code> method
-        terminates.</p>
+        the module, e.g. in case of upgrades. Make sure you provide the proper code to <code>start</code> and
+        <code>stop</code> methods to initialise state or free resources.
+        E.g. in our example, we make sure that the loop in the <code>processFixed</code> method terminates.
+        Jemo guarantees to run the number of fixed processes you have requested at all time.
+        This behaviour is very similar with the kubernetes behaviour, where you would declare how many pods you want
+        to run and when one pod goes down, kubernetes would create another one to replace it.
+    </p>
 
     <h3 id="deploy-the-demo-application-on-jemo"><a class="anchor"
                                                     href="#deploy-the-demo-application-on-jemo"></a>2.2.
@@ -862,9 +833,10 @@ void process(HttpServletRequest request, HttpServletResponse response);</code></
                                                              data-lang="bash">&gt; mvn deploy</code></pre>
         </div>
     </div>
-    <p>The following logs will be printed by the Jemo instance specified on the <code>pom.xml</code>
+    <p>The following logs are printed by the Jemo instance specified on the <code>pom.xml</code>
         file.
     </p>
+
     <div class="listingblock">
         <div class="title">deployment logs</div>
         <div class="content">
@@ -886,8 +858,7 @@ void process(HttpServletRequest request, HttpServletResponse response);</code></
     </div>
 
     <p>Whenever a trader changes his target values, you can observe a log of the following form where
-        the
-        3rd line is only logged a match is found:</p>
+        the 3rd line is only logged when a match is found:</p>
 
     <div class="listingblock">
         <div class="title">trader update logs</div>
