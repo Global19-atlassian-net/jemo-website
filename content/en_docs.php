@@ -597,10 +597,8 @@ void process(HttpServletRequest request, HttpServletResponse response);</code></
         with an endpoint of the form <code>/1/v1.0/market</code>.
         Jemo, uses a prefix of the form <code>/{plugin_id}/v{version_number}</code>, where
         <code>plugin_id</code>
-        is defined on <code>pom.xml</code>,
-        while <code>version_number</code> is determined by the <code>Module.getVersion</code>
-        implementation. The default implementation returns <code>1.0</code>,
-        override this method to change it.</p>
+        is defined on <code>pom.xml</code>
+        and <code>version_number</code> is determined by the pom version.
 </div>
 
 <h4 id="implementing-the-event-processing-pattern"><a class="anchor"
