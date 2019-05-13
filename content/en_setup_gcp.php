@@ -95,7 +95,8 @@
         The terraform user is then used to run these terraform templates.</p>
 
     <pre class="content">
-If you don&#8217;t have credentials for the terraform user, follow these steps:
+If you don&#8217;t have credentials for the terraform user, first install  <a href="https://cloud.google.com/sdk/install" target="_blank">gcloud</a>
+        and then follow these steps:
 
  1. Create a service account with the "terraform-user" name:
     > gcloud iam service-accounts create terraform-user
