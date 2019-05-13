@@ -18,7 +18,9 @@
   # Define your project-wide Nav bars here.
   # Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank).
   $Nav->addNavSeparator("Eclipse Jemo",   "/jemo/");
-  $Nav->addCustomNav("Setup Documentation", "/jemo/docs.php", "_self", NULL);
+  $Nav->addCustomNav("Setup - Amazon AWS", "/jemo/setup_aws.php", "_self", NULL);
+  $Nav->addCustomNav("Setup - Microsoft Azure", "/jemo/setup_azure.php", "_self", NULL);
+  $Nav->addCustomNav("Setup - Google Cloud", "/jemo/setup_gcp.php", "_self", NULL);
   $Nav->addCustomNav("Arcitecture", "/jemo/docs.php", "_self", NULL);
   $Nav->addCustomNav("Source code", "https://git.eclipse.org/c/jemo/jemo.git/", "_self", NULL);
 //  $Nav->addCustomNav("Using Phoenix", "http://wiki.eclipse.org/Using_Phoenix", "_self", NULL);
