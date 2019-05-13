@@ -62,7 +62,7 @@
         without the need to know Javascript or have experience in front-end development.</p>
 
 
-    <h2 id="technical-requirements"><a class="anchor" href="#technical-requirements"></a>1. Technical requirements</h2>
+    <h2 id="technical-requirements"><a class="anchor" href="#technical-requirements"></a>Technical requirements</h2>
 
     <p>To run Jemo you need to have
         <a href="https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html" target="_blank"
@@ -82,7 +82,7 @@
         path.</p>
 
 
-    <h2 id="build-jemo"><a class="anchor" href="#build-jemo"></a>2. Build Jemo</h2>
+    <h2 id="build-jemo"><a class="anchor" href="#build-jemo"></a>Build Jemo</h2>
 
     <p>To build Jemo locally, you need to clone the jemo repository</p>
 
