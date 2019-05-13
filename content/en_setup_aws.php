@@ -114,7 +114,7 @@ Keep a copy of this file, if there are credentials you want to preserve.
         "iam:ListPolicies"</code>
     </pre>
 
-    <p>In case of missing permissions, Jemo displays the missing permissions.
+    <p>In case of missing permissions, Jemo displays them.
         You have to add them, e.g. by browsing to the AWS console and then come back and try again to login.
 
         A genuine case for this error is when you have created the <code>jemo user</code> or the <code>jemo

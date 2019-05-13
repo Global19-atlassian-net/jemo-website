@@ -25,10 +25,9 @@
         by printing the following log:</p>
 
     <pre>
-        GSM is not setup yet. Please click on the following link to provide configuration: <a
-            href="https://localhost:443/jemo/setup/" class="bare"
-            target="_blank">https://localhost:443/jemo/setup/</a>
-    </pre>
+GSM is not setup yet. Please click on the following link to provide configuration: <a
+                href="https://localhost:443/jemo/setup/" class="bare"
+                target="_blank">https://localhost:443/jemo/setup/</a></pre>
 
     <p>Browse to this link and select GCP.
         Jemo, offers you 3 options:</p>
@@ -56,27 +55,27 @@
     <p>You will be asked to enter <code>project_id</code> and <code>service_account_id</code> and select
         the GCP region the jemo user is created in. The dropdown menu displays all the available GCP regions as for now.
         If the region you are looking for is missing, please type its code in the provided text input.
-        Jemo attempts to locate the json key file on <code>~/.gcp/[SERVICE_ACCOUNT_ID]@[PROJECT_ID]-cred.json</code>.
+        Jemo attempts to locate the <a href="https://cloud.google.com/iam/docs/creating-managing-service-account-keys"
+                                       target="_blank">json key file</a>
+        on <code>~/.gcp/[SERVICE_ACCOUNT_ID]@[PROJECT_ID]-cred.json</code>.
         If the file is there it validates its content.
     </p>
 
     <p>If the credentials are valid, then Jemo checks if the following permissions are given to the <code>jemo
-        user</code>:</p>
-    <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">"roles/datastore.user"
-"roles/storage.admin"
-"roles/logging.admin"</code></pre>
+            user</code>:</p>
+    <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"> "roles/datastore.user"
+ "roles/storage.admin"
+ "roles/logging.admin"</code></pre>
 
     <p>These are the permissions needed for Jemo to run.
-        In addition to these custom roles an additional <code>jemo-role</code> is required. This contains the
-        <code>"iam.serviceAccounts.get"</code> and <code>"resourcemanager.projects.getIamPolicy"</code> permissions
+        In addition to these custom roles an additional <code>jemoRole</code> is required. This contains the
+        <code>iam.serviceAccounts.get</code> and <code>resourcemanager.projects.getIamPolicy</code> permissions
         and is used to validate the user credentials and validate if the user is attahced to the above roles.</p>
 
-    <p>In case of missing permissions, Jemo displays the missing permissions.
+    <p>In case of missing permissions, Jemo displays them.
         You have to add them, e.g. by browsing to the GCP console and then come back and try again to login.
 
-        A genuine case for this error is when you have created the <code>jemo user</code> or the <code>jemo
-            policy</code>
-        yourself.
+        A genuine case for this error is when you have created the <code>jemo user</code> yourself.
         Otherwise, the <code>jemo user</code> created by Jemo will always pass this validation.
         If you created the user with Jemo and get this error,
         it means you provided the credentials of an existing GCP user different than the <code>jemo user</code>.
@@ -84,63 +83,63 @@
     </p>
 
     <p>If the permissions are valid you will be forwarded to the next setup stage
-        which is to select <code>Jemo parameter sets</code>.</p>
+        which is to select <a href="#jemo-parameters">Jemo parameter sets</a>.</p>
 
     <h3 id="jemo-installation"><a class="anchor" href="#jemo-installation"></a>1.2. Jemo Installation</h3>
     <p>Jemo setup requires a GCP service account with the "Owner" role to run terraform with,
         we call this the <code>terraform user</code>.
-        Jemo creates terraform templates to create the user and other resources.
-        The terraform user is then used to run these terraform templates.</p>
+        Jemo creates terraform templates to create the <code>jemo user</code> and other resources.
+        The <code>terraform user</code> is used to run these terraform templates.</p>
 
     <pre class="content">
-If you don&#8217;t have credentials for the terraform user, first install  <a href="https://cloud.google.com/sdk/install" target="_blank">gcloud</a>
-        and then follow these steps:
+If you don&#8217;t have credentials for the terraform user, first <a
+                href="https://cloud.google.com/sdk/install" target="_blank">install gcloud</a> and then follow these steps:
 
  1. Create a service account with the "terraform-user" name:
-    > gcloud iam service-accounts create terraform-user
+> gcloud iam service-accounts create terraform-user
 
  2. Attach the "Owner" role to terraform-user (replace PROJECT_ID with your project id):
-    > gcloud projects add-iam-policy-binding [PROJECT_ID] --member serviceAccount:terraform-user@[PROJECT_ID].iam.gserviceaccount.com --role roles/owner
+> gcloud projects add-iam-policy-binding [PROJECT_ID] --member serviceAccount:terraform-user@[PROJECT_ID].iam.gserviceaccount.com --role roles/owner
 
  3. Create a json key file to be used by terraform to retrieve the credentials:
-    > gcloud iam service-accounts keys create terraform-user@[PROJECT_ID]-cred.json --iam-account terraform-user@[PROJECT_ID].iam.gserviceaccount.com
+> gcloud iam service-accounts keys create terraform-user@[PROJECT_ID]-cred.json --iam-account terraform-user@[PROJECT_ID].iam.gserviceaccount.com
 
  4. Create a directory "~/.gcp" and copy the json key file there:
-    > mkdir ~/.gcp
-    > cp terraform-user@[PROJECT_ID]-cred.json ~/.gcp/</pre>
+> mkdir ~/.gcp
+> cp terraform-user@[PROJECT_ID]-cred.json ~/.gcp/
+</pre>
 
     <p>Jemo generates terraform templates on your filesystem under the directory where
-        Jemo runs, under the <code>gcp/install/</code> directory. Then it runs terraform:</p>
+        Jemo runs, under the <code>gcp/install</code> directory. Then it runs terraform:</p>
 
     <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">&gt; terraform init -no-color -var-file=gcp/install/terraform.tfvars gcp/install
 &gt; terraform plan -no-color -var-file=gcp/install/terraform.tfvars gcp/install
-&gt; terraform apply -no-color -auto-approve -var-file=gcp/install/terraform.tfvars gcp/install</code>
-    </pre>
+&gt; terraform apply -no-color -auto-approve -var-file=gcp/install/terraform.tfvars gcp/install</code></pre>
 
     <pre class="content">
-If the <code>terraform</code> command is not found on your path, Jemo notifies you
-with <a href="https://learn.hashicorp.com/terraform/getting-started/install.html"
-        target="_blank" rel="noopener">Terraform Installation Instructions</a>.</pre>
+If the <code>terraform</code> command is not found on your path, Jemo notifies you with <a
+                href="https://learn.hashicorp.com/terraform/getting-started/install.html"
+                target="_blank" rel="noopener">Terraform Installation Instructions</a>.</pre>
 
     <p>Besides the <code>jemo user</code>, a
-        <code>jemo-role</code> is created and attached to it. Also the custom roles <code>roles/datastore.user</code>,
+        <code>jemoRole</code> is created and attached to it. Also the custom roles <code>roles/datastore.user</code>,
         <code>roles/storage.admin</code> and <code>roles/logging.admin</code> are attached to the <code>jemo user</code>.
         Finally, terraform creates the json key file <code>jemo-user@[PROJECT_ID]-cred.json</code> and Jemo copies this
         under the <code>~/.gcp</code> directory.
-        Every time jemo starts, it attempts to locate this file and validate its content to figure out if the <code>jemo-user</code>
+        Every time jemo starts, it attempts to locate this file and validate its content to figure out if the <code>jemo
+            user</code>
         is setup for GCP.
     </p>
 
     <p>The UI notifies you with all the terraform created resources and printed outputs.</p>
 
     <p>Behind the scenes, Jemo logs in with the <code>jemo user</code> and forwards you
-        to the next setup stage which is to select <code>Jemo parameter sets</code>.</p>
+        to the next setup stage which is to select <a href="#jemo-parameters">Jemo parameter sets</a>.</p>
 
     <h3 id="download-the-terraform-templates"><a class="anchor" href="#download-the-terraform-templates"></a>1.3.
         Download the Terraform Templates</h3>
-    <p>Uppon clicking on the <code>DOWNLOAD</code> button, the <code>install.zip</code> fill
-        will be
-        downloaded. Run:</p>
+    <p>Uppon clicking on the <code>DOWNLOAD</code> button, the <code>install.zip</code> file
+        will be downloaded. Run:</p>
 
     <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">&gt; unzip install.zip
 &gt; cd install</code></pre>
@@ -169,15 +168,16 @@ Outputs:
 user_account_id = jemo-user</code></pre>
 
     <p>Besides the <code>jemo user</code>, a
-        <code>jemo-role</code> is created and attached to it. Also the custom roles <code>roles/datastore.user</code>,
+        <code>jemoRole</code> is created and attached to it. Also the custom roles <code>roles/datastore.user</code>,
         <code>roles/storage.admin</code> and <code>roles/logging.admin</code> are attached to the <code>jemo user</code>.
         Finally, terraform creates the json key file <code>jemo-user@[PROJECT_ID]-cred.json</code> and you need to copy
         this
         under the <code>~/.gcp</code> directory, run:
+        under the <code>~/.gcp</code> directory, run:
     <pre>
 > cp jemo-user\@[PROJECT_ID]-cred.json ~/.gcp
 </pre>
-    Every time jemo starts, it attempts to locate this file and validate its content to figure out if the <code>jemo-user</code>
+    Every time jemo starts, it attempts to locate this file and validate its content to figure out if the <code>jemo user</code>
     is setup for GCP.
     </p>
 
@@ -211,9 +211,9 @@ user_account_id = jemo-user</code></pre>
         </tr>
         <tr>
             <td class="tableblock halign-left valign-top"><p class="tableblock"><code>eclipse.jemo.location.type</code>
-            </p></td>
+                </p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">One of [<code>CLOUD</code>, <code>ON-PROMISE</code>]
-            </p></td>
+                </p></td>
         </tr>
         <tr>
             <td class="tableblock halign-left valign-top"><p class="tableblock"><code>eclipse.jemo.whitelist</code></p>
@@ -227,20 +227,20 @@ user_account_id = jemo-user</code></pre>
         </tr>
         <tr>
             <td class="tableblock halign-left valign-top"><p class="tableblock"><code>eclipse.jemo.queue.polltime</code>
-            </p></td>
+                </p></td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">The queue poll interval</p></td>
         </tr>
         <tr>
             <td class="tableblock halign-left valign-top"><p class="tableblock"><code>eclipse.jemo.log.local</code></p>
             </td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">Switch between local and cloud
-                logging</p></td>
+                    logging</p></td>
         </tr>
         <tr>
             <td class="tableblock halign-left valign-top"><p class="tableblock"><code>eclipse.jemo.log.output</code></p>
             </td>
             <td class="tableblock halign-left valign-top"><p class="tableblock">If local logging is enabled, this
-                parameter controls the log output (e.g. STDOUT or a local file)</p></td>
+                    parameter controls the log output (e.g. STDOUT or a local file)</p></td>
         </tr>
         <tr>
             <td class="tableblock halign-left valign-top"><p class="tableblock"><code>eclipse.jemo.log.level</code></p>
@@ -318,7 +318,7 @@ user_account_id = jemo-user</code></pre>
 
     <p>The whole process can take up to 15 minutes. The Jemo UI monitors the progress.</p>
 
-    <p>In the end, the UI notifies you with the terraform crested resources and outputs,
+    <p>In the end, the UI notifies you with the terraform created resources and outputs,
         as well as with the URL where you can access Jemo.
         This is the external URL of the ingress load balancer.</p>
 

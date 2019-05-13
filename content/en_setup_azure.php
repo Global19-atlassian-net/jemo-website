@@ -90,7 +90,7 @@ Keep a copy of this file, if there are credentials you want to preserve.
 "Microsoft.KeyVault/vaults/secrets/read",
 "Microsoft.KeyVault/vaults/secrets/write"</code></pre>
 
-    <p>In case of missing permissions, Jemo displays the missing permissions.
+    <p>In case of missing permissions, Jemo displays them.
         You have to add them, e.g. by browsing to the Azure console and then come back and try again to login.
 
         A genuine case for this error is when you have created the <code>jemo user</code> yourself.
