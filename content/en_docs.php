@@ -872,5 +872,4 @@ void process(HttpServletRequest request, HttpServletResponse response);</code></
 <!-- ./end  #midcolumn -->
 
 <!-- Start of the right column -->
-<? include("docs_menu.php"); ?>
 <!-- ./end  #rightcolumn -->

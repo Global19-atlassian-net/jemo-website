@@ -14,8 +14,6 @@
 
 <!-- Main content area -->
 <div id="midcolumn">
-    <h1>Setup Documentation</h1>
-
 
     <h2 id="getting-started"><a class="anchor" href="#getting-started"></a>1. Getting Started</h2>
     <p>When Jemo starts, it iterates over supported CSP&#8217;s and attempts to find credentials for a user to run with.
@@ -636,15 +634,4 @@ Make sure the <code>~/.aws/credentials</code> file has the terraform user creden
 
 </div>
 <!-- ./end  #midcolumn -->
-
-<!-- Start of the right column -->
-<div id="rightcolumn">
-    <div class="sideitem">
-        <h2>Related Links</h2>
-        <ul>
-            <li><a target="_self" href="/jemo/roadmap.php">Roadmap</a></li>
-        </ul>
-    </div>
-</div>
-<!-- ./end  #rightcolumn -->
 

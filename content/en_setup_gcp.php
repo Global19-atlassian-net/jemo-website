@@ -1,10 +1,18 @@
-<html>
-
+<?php
+/*******************************************************************************
+ * Copyright (c) 2014 Eclipse Foundation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Christopher Guindon (Eclipse Foundation) - Initial implementation
+ *******************************************************************************/
+?>
 
 <!-- Main content area -->
 <div id="midcolumn">
-    <h1>Setup Documentation</h1>
-
 
     <h2 id="getting-started"><a class="anchor" href="#getting-started"></a>1. Getting Started</h2>
     <p>When Jemo starts, it iterates over supported CSP&#8217;s and attempts to find credentials for a user to run with.
@@ -413,18 +421,6 @@ gcp_cluster_name = ...</code></pre>
 
 
 </div>
-<!-- ./end  #midcolumn -->
-
-<!-- Start of the right column -->
-<div id="rightcolumn">
-    <div class="sideitem">
-        <h2>Related Links</h2>
-        <ul>
-            <li><a target="_self" href="/jemo/roadmap.php">Roadmap</a></li>
-        </ul>
-    </div>
-</div>
-<!-- ./end  #rightcolumn -->
 
 
-</html>
+

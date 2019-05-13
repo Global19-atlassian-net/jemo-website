@@ -847,13 +847,3 @@ kube_config = ...</code></pre>
 </div>
 <!-- ./end  #midcolumn -->
 
-<!-- Start of the right column -->
-<div id="rightcolumn">
-    <div class="sideitem">
-        <h2>Related Links</h2>
-        <ul>
-            <li><a target="_self" href="/jemo/roadmap.php">Roadmap</a></li>
-        </ul>
-    </div>
-</div>
-<!-- ./end  #rightcolumn -->
