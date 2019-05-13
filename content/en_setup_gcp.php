@@ -62,11 +62,9 @@
 
     <p>If the credentials are valid, then Jemo checks if the following permissions are given to the <code>jemo
         user</code>:</p>
-    <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">
-        "roles/datastore.user"
-        "roles/storage.admin"
-        "roles/logging.admin"</code>
-    </pre>
+    <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">"roles/datastore.user"
+"roles/storage.admin"
+"roles/logging.admin"</code></pre>
 
     <p>These are the permissions needed for Jemo to run.
         In addition to these custom roles an additional <code>jemo-role</code> is required. This contains the
@@ -109,8 +107,7 @@ If you don&#8217;t have credentials for the terraform user, first install  <a hr
 
  4. Create a directory "~/.gcp" and copy the json key file there:
     > mkdir ~/.gcp
-    > cp terraform-user@[PROJECT_ID]-cred.json ~/.gcp/
-    </pre>
+    > cp terraform-user@[PROJECT_ID]-cred.json ~/.gcp/</pre>
 
     <p>Jemo generates terraform templates on your filesystem under the directory where
         Jemo runs, under the <code>gcp/install/</code> directory. Then it runs terraform:</p>
@@ -123,8 +120,7 @@ If you don&#8217;t have credentials for the terraform user, first install  <a hr
     <pre class="content">
 If the <code>terraform</code> command is not found on your path, Jemo notifies you
 with <a href="https://learn.hashicorp.com/terraform/getting-started/install.html"
-        target="_blank" rel="noopener">Terraform Installation Instructions</a>.
-    </pre>
+        target="_blank" rel="noopener">Terraform Installation Instructions</a>.</pre>
 
     <p>Besides the <code>jemo user</code>, a
         <code>jemo-role</code> is created and attached to it. Also the custom roles <code>roles/datastore.user</code>,
@@ -155,8 +151,7 @@ with <a href="https://learn.hashicorp.com/terraform/getting-started/install.html
     <pre>
 project_id="..."
 credentials_file="..."
-region="..."</code>
-    </pre>
+region="..."</code></pre>
 
     <p>Then run terraform with:</p>
 
