@@ -1384,11 +1384,6 @@
 </div>
 <!-- ./end  #midcolumn -->
 
-<?php
-$Nav->addCustomNav("Amazon AWS", "/jemo/content/en_setup_aws.php", "_self", NULL);
-$Nav->addCustomNav("Microsoft Azure", "/jemo/content/en_setup_azure.php", "_self", NULL);
-$Nav->addCustomNav("Google Cloud", "/jemo/content/en_setup_gcp.php", "_self", NULL);
-?>
 
 
 <!-- Start of the right column -->
